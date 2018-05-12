@@ -26,3 +26,18 @@ function getCount(arr, rank，ranktype){
     var rank1 = rank || arr1.length;
     return arr1.slice(0,rank1);
 }
+
+
+//求一个数组中最大子列和 T(N) = O(N)
+function maxSubseqSum(arr) {
+    let thisSum = maxSum = 0
+    for (var i = arr.length - 1; i >= 0; i--) {
+        thisSum += arr[i]    //向右依次累加
+        if (thisSum > maxSum) {
+            maxSum = thisSum   //找到更大的和便更新结果
+        }else if (thisSum < 0) {
+            thisSum = 0   //如果当前和<0 则不可能使后面增大，抛弃
+        }
+    }
+    return maxSum
+}
